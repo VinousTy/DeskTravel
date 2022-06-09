@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  db:
+    build: ./mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_DATABASE: 'deskTravel'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/mysql_volume:/var/lib/mysql
+
+  web-back:
+    build: backend/web-back/.
+    command: gunicorn --bind :8000 config.wsgi:application
+    volumes:
+      - ./backend/web-back:/code/
+      - static_volume:/code/staticfiles
+    stdin_open: true
+    tty: true
+    # ports:
+    #   - '8000:8000'
+    depends_on:
+      - db
+
+  nginx:
+    build: ./backend/nginx/.
+    volumes:
+      - static_volume:/code/staticfiles
+    ports:
+      - 80:80
+    depends_on:
+      - web-back
+
+  web-front:
+    build: frontend/.
+    volumes:
+      - ./frontend/:/usr/src
+    ports:
+      - 3000:3000
+    tty: true
+
+volumes:
+  static_volume:
