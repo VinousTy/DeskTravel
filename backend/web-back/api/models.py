@@ -55,7 +55,7 @@ class Profile(models.Model):
       Category, on_delete=models.CASCADE, related_name='category', blank=True, null=True
   )
   self_introduction = models.CharField(max_length=150, blank=True, null=True)
-  img = models.ImageField(blank=True, null=True)
+  img = models.ImageField(blank=True, null=True, upload_to='avatars')
   created_at = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
@@ -78,7 +78,7 @@ class Post(models.Model):
 
 
 class PostImage(models.Model):
-  img = models.ImageField(blank=True, null=True)
+  img = models.ImageField(blank=True, null=True, upload_to='posts')
   postId = models.ForeignKey(
       Post, on_delete=models.CASCADE, related_name='postId')
 
