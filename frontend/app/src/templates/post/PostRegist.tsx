@@ -84,7 +84,7 @@ const PostRegist: React.FC = () => {
     [others, setOthers] = useState<string[]>([]);
   const history = useHistory();
 
-  const postOnCreate = myPost.filter((post) => {
+  const postOnCreate = myPost?.filter((post) => {
     return post.body === 'create';
   });
 
