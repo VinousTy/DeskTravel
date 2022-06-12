@@ -112,19 +112,19 @@ const PostList: React.FC<PROPS_POST_LIST> = ({
 
   const home = location.pathname.includes('/home');
 
-  const commentsOnPost = comments.filter((com) => {
-    return com.postId === postId;
+  const commentsOnPost = comments?.filter((com) => {
+    return com?.postId === postId;
   });
 
-  const prof = profiles.filter((prof) => {
+  const prof = profiles?.filter((prof) => {
     return prof.userProfile === userPost;
   });
 
-  const loginProf = profiles.filter((prof) => {
+  const loginProf = profiles?.filter((prof) => {
     return prof.userProfile === loginId;
   });
 
-  const img = image.filter((img) => {
+  const img = image?.filter((img) => {
     return img.postId === postId;
   });
 
