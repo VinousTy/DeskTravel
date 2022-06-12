@@ -8,6 +8,7 @@ module.exports = {
         'bg-gray': 'rgb(54, 54, 54)',
         'secondary': '#dd4b39',
         'orange': 'rgb(226, 147, 0)',
+        'wine': '#5a09a7',
       }
     },
   },
