@@ -134,11 +134,11 @@ const PostEdit: React.FC = () => {
     id = id?.split('/')[1];
   }
 
-  const postOnId = myPost.filter((post) => {
+  const postOnId = myPost?.filter((post) => {
     return post.id === Number(id);
   });
 
-  const postOnImg = postGetImage.filter((img) => {
+  const postOnImg = postGetImage?.filter((img) => {
     return img.postId === Number(id);
   });
 
