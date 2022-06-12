@@ -143,7 +143,6 @@ const Profile: React.FC = () => {
             className="md:shadow bg-black placeholder-fray-500 appearance-none rounded w-10/12 py-2 px-3 mb-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline cursor-pointer"
             type="text"
             data-testid="input-name"
-            value={profile?.name}
             placeholder="名前を入力"
             {...register('name', {
               required: {
