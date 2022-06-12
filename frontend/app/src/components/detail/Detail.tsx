@@ -101,8 +101,8 @@ const Detail: React.FC<PROPS_POST_DETAIL> = ({
   const isWide = useMedia({ maxWidth: '768px' });
   const arry: CATEGORY[] = [];
 
-  const commentsOnPost = comments.filter((com) => {
-    return com.postId === postId;
+  const commentsOnPost = comments?.filter((com) => {
+    return com?.postId === postId;
   });
 
   const prof = profiles.filter((prof) => {
