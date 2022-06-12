@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
   const history = useHistory();
   const isWide = useMedia({ maxWidth: '768px' });
 
-  const categoryOnProfile = categories.filter((category) => {
+  const categoryOnProfile = categories?.filter((category) => {
     if (category.id === 0) {
       return;
     } else {
@@ -208,7 +208,7 @@ const Profile: React.FC = () => {
             }
           >
             <option value="">カテゴリを選択してください</option>
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
               </option>
