@@ -95,7 +95,7 @@ const NewPostModal: React.FC = () => {
               <div
                 className={`${styles.container_tab} flex flex-wrap justify-between`}
               >
-                {post.map((post) => (
+                {post?.map((post) => (
                   <div key={post.id} className={styles.img}>
                     <EditPostList postId={post.id} />
                   </div>
