@@ -107,10 +107,10 @@ const MyPage: React.FC = () => {
               <div
                 className={`${styles.container_tab} flex flex-wrap justify-between`}
               >
-                {post.length === 0 ? (
+                {post?.length === 0 ? (
                   <div>投稿がありません</div>
                 ) : (
-                  post.map((post) => (
+                  post?.map((post) => (
                     <div
                       key={post.id}
                       className={styles.img}
@@ -128,7 +128,7 @@ const MyPage: React.FC = () => {
               <div
                 className={`${styles.container} flex flex-wrap justify-between`}
               >
-                {arry.length === 0 ? (
+                {arry?.length === 0 ? (
                   <div>保存済み投稿がありません</div>
                 ) : (
                   arry?.map((arry) => (
