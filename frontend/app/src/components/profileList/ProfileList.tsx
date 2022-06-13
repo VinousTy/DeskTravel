@@ -82,7 +82,7 @@ const ProfileList: React.FC<PROPS_PROFILELIST> = (props) => {
             <></>
           ) : (
             <div className="ml-6 md:mt-2 md:mb-4 md:ml-10">
-              {userCategory.map((category) => (
+              {userCategory?.map((category) => (
                 <span key={category.id} className={styles.category}>
                   {category.name}
                 </span>
