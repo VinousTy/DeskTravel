@@ -12,7 +12,7 @@ const MyPostList: React.FC<POST_ID> = ({ postId }) => {
   const image = useSelector(selectImage);
   const history = useHistory();
 
-  const img = image.filter((img) => {
+  const img = image?.filter((img) => {
     return img.postId === postId;
   });
 
@@ -25,7 +25,7 @@ const MyPostList: React.FC<POST_ID> = ({ postId }) => {
 
   return (
     <img
-      src={img[0]?.img}
+      src={img && img[0]?.img}
       alt="投稿画像"
       className="w-64 h-32 md:h-64"
       onClick={() => history.push(`/post/detail/${postId}`)}
