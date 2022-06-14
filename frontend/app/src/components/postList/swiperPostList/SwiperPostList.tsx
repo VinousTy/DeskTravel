@@ -66,7 +66,7 @@ const SwiperPostList: React.FC<PROPS_LOGINID> = ({ loginId }) => {
       >
         <div className="md:text-center md:mx-auto">
           {posts
-            .slice(-5)
+            ?.slice(-5)
             .reverse()
             .map((post) => (
               <SwiperSlide key={post.id}>
