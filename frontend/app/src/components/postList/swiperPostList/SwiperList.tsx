@@ -87,15 +87,15 @@ const SwiperList: React.FC<PROPS_POST_LIST> = ({
   const image = useSelector(selectImage);
   const history = useHistory();
 
-  const commentsOnPost = comments.filter((com) => {
+  const commentsOnPost = comments?.filter((com) => {
     return com.postId === postId;
   });
 
-  const prof = profiles.filter((prof) => {
+  const prof = profiles?.filter((prof) => {
     return prof.userProfile === userPost;
   });
 
-  const img = image.filter((img) => {
+  const img = image?.filter((img) => {
     return img.postId === postId;
   });
 
@@ -190,7 +190,7 @@ const SwiperList: React.FC<PROPS_POST_LIST> = ({
               {prof[0]?.name}
             </h5>
             <h6 className="text-gray-500">
-              {userCategory.map((category) => (
+              {userCategory?.map((category) => (
                 <span
                   key={category.id}
                   className={styles.category}
