@@ -31,7 +31,7 @@ const Home: React.FC = () => {
     }
   });
 
-  const sort = postRank.sort(function (a, b) {
+  const sort = postRank?.sort(function (a, b) {
     return b.liked.length - a.liked.length;
   });
 
@@ -124,7 +124,7 @@ const Home: React.FC = () => {
         <div
           className={`${styles.ribbon_wrapper} md:flex mx-4 md:justify-between`}
         >
-          {sort.slice(0, 3).map((post, index) => (
+          {sort?.slice(0, 3).map((post, index) => (
             <React.Fragment key={post.id}>
               <PostCard
                 key={post.id}
