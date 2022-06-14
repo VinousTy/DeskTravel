@@ -12,6 +12,7 @@ import PostList from './templates/post/PostList';
 import PostRegist from './templates/post/PostRegist';
 import PrivacyPolicy from './templates/privacyPolicy/PrivacyPolicy';
 import Profile from './templates/profile/Profile';
+import TermsOfService from './templates/termsOfService/TermsOfService';
 
 const Router = () => {
   return (
@@ -28,6 +29,7 @@ const Router = () => {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/privacy" component={PrivacyPolicy} />
+        <Route exact path="/terms" component={TermsOfService} />
       </Switch>
       <Footer />
     </BrowserRouter>
