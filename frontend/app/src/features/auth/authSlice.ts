@@ -96,6 +96,14 @@ export const deleteUser = createAsyncThunk(
         },
       });
       return res.data;
+    } else {
+      const res = await axios.delete(`${apiUrl}api/register/${id.id}/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      return res.data;
     }
   }
 );
@@ -125,6 +133,14 @@ export const createProfile = createAsyncThunk(
         },
       });
       return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/profile/`, name, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      return res.data;
     }
   }
 );
@@ -150,6 +166,18 @@ export const updateProfile = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/profile/${profile.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -162,6 +190,13 @@ export const getMyProfile = createAsyncThunk('profile/get', async () => {
       },
     });
     return res.data[0];
+  } else {
+    const res = await axios.get(`${apiUrl}api/myprofile/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+    return res.data[0];
   }
 });
 
@@ -170,6 +205,13 @@ export const getProfiles = createAsyncThunk('profiles/get', async () => {
     const res = await axios.get(`${apiUrl}api/profile/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/profile/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -186,6 +228,13 @@ export const searchGetProfiles = createAsyncThunk(
         },
       });
       return res.data;
+    } else {
+      const res = await axios.get(`${apiUrl}api/profile/?name=${name.name}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      return res.data;
     }
   }
 );
@@ -195,6 +244,13 @@ export const getCategory = createAsyncThunk('category/get', async () => {
     const res = await axios.get(`${apiUrl}api/category/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/category/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
