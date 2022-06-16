@@ -84,6 +84,13 @@ export const getPosts = createAsyncThunk('posts/get', async () => {
       },
     });
     return res.data;
+  } else if (localStorage.access_token) {
+    const res = await axios.get(apiUrlPost, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+    return res.data;
   }
 });
 
@@ -95,6 +102,14 @@ export const createPost = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json',
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrlPost}`, body, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -113,6 +128,14 @@ export const deletePost = createAsyncThunk(
         },
       });
       return res.data;
+    } else {
+      const res = await axios.delete(`${apiUrlPost}${id.id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      return res.data;
     }
   }
 );
@@ -122,6 +145,13 @@ export const getMyPost = createAsyncThunk('post/get', async () => {
     const res = await axios.get(apiUrlMyPost, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(apiUrlMyPost, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -141,6 +171,14 @@ export const updatePost = createAsyncThunk(
         },
       });
       return res.data;
+    } else {
+      const res = await axios.put(`${apiUrlPost}${newPost.id}/`, uploadData, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      return res.data;
     }
   }
 );
@@ -150,6 +188,13 @@ export const getImage = createAsyncThunk('image/get', async () => {
     const res = await axios.get(apiUrlPostImage, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(apiUrlPostImage, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -166,6 +211,13 @@ export const postImage = createAsyncThunk(
       const res = await axios.post(apiUrlPostImage, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(apiUrlPostImage, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -187,6 +239,18 @@ export const updateImage = createAsyncThunk(
           headers: {
             'Content-Type': 'application/json',
             Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrlPostImage}${image.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
           },
         }
       );
@@ -230,6 +294,29 @@ export const patchLiked = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json',
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      if (!overlapped) {
+        uploadData.append('liked', String(liked.new));
+      } else if (currentLiked.length === 1) {
+        uploadData.append('body', liked.body);
+        liked.current_bookmark.forEach((current) => {
+          uploadData.append('bookmark', String(current));
+        });
+        const res = await axios.put(`${apiUrlPost}${liked.id}/`, uploadData, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        });
+        return res.data;
+      }
+      const res = await axios.patch(`${apiUrlPost}${liked.id}/`, uploadData, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -283,6 +370,37 @@ export const patchBookmark = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      if (!overlapped) {
+        uploadData.append('bookmark', String(bookmark.new_bookmark));
+      } else if (currentBookmark.length === 1) {
+        uploadData.append('body', bookmark.body);
+        bookmark.current.forEach((current) => {
+          uploadData.append('liked', String(current));
+        });
+        const res = await axios.put(
+          `${apiUrlPost}${bookmark.id}/`,
+          uploadData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.access_token}`,
+            },
+          }
+        );
+        return res.data;
+      }
+      const res = await axios.patch(
+        `${apiUrlPost}${bookmark.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -292,6 +410,13 @@ export const getMonitor = createAsyncThunk('monitor/get', async () => {
     const res = await axios.get(`${apiUrl}api/monitor/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/monitor/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -309,6 +434,13 @@ export const postMonitor = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/monitor/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/monitor/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -335,6 +467,18 @@ export const updateMonitor = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/monitor/${monitor.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -344,6 +488,13 @@ export const getComputer = createAsyncThunk('computer/get', async () => {
     const res = await axios.get(`${apiUrl}api/computer/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/computer/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -361,6 +512,13 @@ export const postComputer = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/computer/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/computer/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -387,6 +545,18 @@ export const updateComputer = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/computer/${computer.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -396,6 +566,13 @@ export const getKeyboard = createAsyncThunk('keyboard/get', async () => {
     const res = await axios.get(`${apiUrl}api/keyboard/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/keyboard/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -413,6 +590,13 @@ export const postKeyboard = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/keyboard/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/keyboard/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -439,6 +623,18 @@ export const updateKeyboard = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/keyboard/${keyboard.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -448,6 +644,13 @@ export const getMouse = createAsyncThunk('mouse/get', async () => {
     const res = await axios.get(`${apiUrl}api/mouse/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/mouse/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -465,6 +668,13 @@ export const postMouse = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/mouse/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/mouse/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -491,6 +701,18 @@ export const updateMouse = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/mouse/${mouse.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -500,6 +722,13 @@ export const getSpeaker = createAsyncThunk('speaker/get', async () => {
     const res = await axios.get(`${apiUrl}api/speaker/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/speaker/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -517,6 +746,13 @@ export const postSpeaker = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/speaker/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/speaker/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -543,6 +779,18 @@ export const updateSpeaker = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/speaker/${speaker.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -552,6 +800,13 @@ export const getTable = createAsyncThunk('table/get', async () => {
     const res = await axios.get(`${apiUrl}api/table/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/table/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -569,6 +824,13 @@ export const postTable = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/table/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/table/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -595,6 +857,18 @@ export const updateTable = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/table/${table.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -604,6 +878,13 @@ export const getChair = createAsyncThunk('chair/get', async () => {
     const res = await axios.get(`${apiUrl}api/chair/`, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/chair/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -621,6 +902,13 @@ export const postChair = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/chair/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/chair/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -671,6 +959,13 @@ export const getOther = createAsyncThunk('other/get', async () => {
       },
     });
     return res.data;
+  } else {
+    const res = await axios.get(`${apiUrl}api/other/`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+    return res.data;
   }
 });
 
@@ -685,6 +980,13 @@ export const postOther = createAsyncThunk(
       const res = await axios.post(`${apiUrl}api/other/`, uploadData, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(`${apiUrl}api/other/`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
@@ -711,6 +1013,18 @@ export const updateOther = createAsyncThunk(
         }
       );
       return res.data;
+    } else {
+      const res = await axios.put(
+        `${apiUrl}api/other/${other.id}/`,
+        uploadData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      return res.data;
     }
   }
 );
@@ -720,6 +1034,13 @@ export const getComments = createAsyncThunk('comment/get', async () => {
     const res = await axios.get(apiUrlComment, {
       headers: {
         Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  } else {
+    const res = await axios.get(apiUrlComment, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
       },
     });
     return res.data;
@@ -733,6 +1054,13 @@ export const postComment = createAsyncThunk(
       const res = await axios.post(apiUrlComment, comment, {
         headers: {
           Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return res.data;
+    } else {
+      const res = await axios.post(apiUrlComment, comment, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
       return res.data;
