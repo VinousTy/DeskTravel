@@ -3,6 +3,7 @@ import axios from 'axios';
 import { RootState } from '../../app/store';
 import {
   AUTH_STATE,
+  NEW_PASSWORD,
   POST_EMAIL,
   PROPS_AUTHEN,
   PROPS_NAME,
@@ -65,6 +66,18 @@ export const postEmail = createAsyncThunk(
   'auth/email',
   async (email: POST_EMAIL) => {
     const res = await axios.post(`${apiUrl}password/reset/`, email, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return res.data;
+  }
+);
+
+export const newPassword = createAsyncThunk(
+  'new/password',
+  async (password: NEW_PASSWORD) => {
+    const res = await axios.post(`${apiUrl}password/reset/confirm/`, password, {
       headers: {
         'Content-Type': 'application/json',
       },
