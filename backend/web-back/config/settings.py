@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'drf_social_oauth2',
+    'rest_auth',
+    'rest_auth.registration',
+    'django_rest_passwordreset',
     'corsheaders',
 ]
 
@@ -49,7 +52,7 @@ CORS_ORIGIN_WHITELIST = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,6 +102,13 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {
