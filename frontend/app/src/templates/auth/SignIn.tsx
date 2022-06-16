@@ -13,7 +13,6 @@ import { BsGoogle } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import Swal from 'sweetalert2';
 import GoogleLogin from 'react-google-login';
-import { gapi } from 'gapi-script';
 
 interface INPUTS {
   email: string;
@@ -33,19 +32,6 @@ const SignIn: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm<INPUTS>();
-
-  useEffect(() => {
-    gapi.load('client:auth2', () => {
-      gapi.client
-        .init({
-          clientId: googleClientId,
-          scope: '',
-        })
-        .then(() => {
-          const auth = gapi.auth2.getAuthInstance();
-        });
-    });
-  }, []);
 
   const handleGoogleLogin = async (response: any) => {
     const resultReg = await dispatch(googleLogin(response));
