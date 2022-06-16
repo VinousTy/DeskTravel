@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Auth.module.scss';
 import { AppDispatch } from '../../app/store';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -9,15 +9,20 @@ import {
   createProfile,
   loginEmail,
   isSignIn,
+  googleLogin,
 } from '../../features/auth/authSlice';
 import { BsGoogle, BsTwitter } from 'react-icons/bs';
 import Swal from 'sweetalert2';
+import { GoogleLogin } from 'react-google-login';
+import { gapi } from 'gapi-script';
 
 interface INPUTS {
   email: string;
   password: string;
   confirm_password: string;
 }
+
+const googleClientId = String(process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
 const SignUp: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -30,6 +35,35 @@ const SignUp: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm<INPUTS>();
+
+  const handleGoogleLogin = async (response: any) => {
+    const resultReg = await dispatch(googleLogin(response));
+    if (googleLogin.fulfilled.match(resultReg)) {
+      await dispatch(createProfile({ name: 'anonymouse' }));
+      await history.push('/profile');
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'ユーザー登録失敗',
+        text: 'Google登録時にエラーが発生しました。時間を置いてから再度お試しください。',
+        color: '#fff',
+        background: '#222',
+      });
+    }
+  };
+
+  useEffect(() => {
+    gapi.load('client:auth2', () => {
+      gapi.client
+        .init({
+          clientId: googleClientId,
+          scope: '',
+        })
+        .then(() => {
+          const auth = gapi.auth2.getAuthInstance();
+        });
+    });
+  }, []);
 
   const onSubmit: SubmitHandler<INPUTS> = async (data) => {
     const resultReg = await dispatch(registUser(data));
@@ -151,15 +185,24 @@ const SignUp: React.FC = () => {
           </div>
           <div className={styles.separation}>または</div>
           <div className="mt-6 mb-6">
-            <button
-              type="button"
-              className="w-10/12 md:w-9/12 py-2 px-3 bg-secondary hover:bg-red-800 transition-all mt-5 mb-5 text-white font-bold rounded"
-            >
-              <span className="flex justify-between md:justify-center">
-                <BsGoogle className="mt-1 font md:mr-4" />
-                <span className="md:t">Googleアカウントで登録</span>
-              </span>
-            </button>
+            <GoogleLogin
+              clientId={googleClientId}
+              buttonText="LOGIN WITH GOOGLE"
+              onSuccess={(response) => handleGoogleLogin(response)}
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  type="button"
+                  className="w-10/12 md:w-9/12 py-2 px-3 bg-secondary hover:bg-red-800 transition-all mt-5 mb-5 text-white font-bold py-2 px-4 rounded"
+                >
+                  <span className="flex justify-between md:justify-center">
+                    <BsGoogle className="mt-1 font md:mr-4" />
+                    <span>Googleアカウントで登録</span>
+                  </span>
+                </button>
+              )}
+            />
           </div>
           <div
             className="mb-6"
