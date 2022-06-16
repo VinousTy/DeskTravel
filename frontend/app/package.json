@@ -21,6 +21,7 @@
     "@types/react-tabs": "^2.3.4",
     "autoprefixer": "^9.8.8",
     "axios": "^0.27.2",
+    "emailjs-com": "^3.2.0",
     "gapi-script": "^1.2.0",
     "postcss": "^8.4.14",
     "postcss-flexbugs-fixes": "^5.0.2",
