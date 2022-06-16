@@ -70,7 +70,6 @@ const Header: React.FC = () => {
   };
 
   const guestLogin = async () => {
-    await dispatch(isToggleDrawer());
     const auth = {
       email: 'guest@example.com',
       password: guestPassword,
