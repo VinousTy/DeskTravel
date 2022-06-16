@@ -6,6 +6,7 @@ import EmailPost from './templates/auth/EmailPost';
 import PasswordReset from './templates/auth/PasswordReset';
 import SignIn from './templates/auth/SignIn';
 import SignUp from './templates/auth/SignUp';
+import Contact from './templates/contact/Contact';
 import Home from './templates/home/Home';
 import MyPage from './templates/mypage/MyPage';
 import PostDetail from './templates/post/PostDetail';
@@ -34,6 +35,7 @@ const Router = () => {
         <Route exact path="/home" component={Home} />
         <Route exact path="/privacy" component={PrivacyPolicy} />
         <Route exact path="/terms" component={TermsOfService} />
+        <Route exact path="/contact" component={Contact} />
       </Switch>
       <Footer />
     </BrowserRouter>
