@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
+import EmailPost from './templates/auth/EmailPost';
+import PasswordReset from './templates/auth/PasswordReset';
 import SignIn from './templates/auth/SignIn';
 import SignUp from './templates/auth/SignUp';
 import Home from './templates/home/Home';
@@ -21,6 +23,8 @@ const Router = () => {
       <Switch>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/reset" component={EmailPost} />
+        <Route path={'/password/reset(/?token=)?'} component={PasswordReset} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/post/regist" component={PostRegist} />
         <Route path={'/post/edit(/:id)?'} component={PostEdit} />
