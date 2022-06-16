@@ -16,12 +16,14 @@ import PostRegist from './templates/post/PostRegist';
 import PrivacyPolicy from './templates/privacyPolicy/PrivacyPolicy';
 import Profile from './templates/profile/Profile';
 import TermsOfService from './templates/termsOfService/TermsOfService';
+import Top from './templates/top/Top';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route exact path="/" component={Top} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/reset" component={EmailPost} />
