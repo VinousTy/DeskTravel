@@ -18,12 +18,12 @@ import { useForm } from 'react-hook-form';
 import NewPostModal from '../../components/postModal/NewPostModal';
 
 interface ARRY {
-  id: number;
+  id: string;
   body: string;
-  userPost: number;
+  userPost: string;
   created_on: string;
-  bookmark: number[];
-  liked: number[];
+  bookmark: string[];
+  liked: string[];
 }
 
 interface NAME {
