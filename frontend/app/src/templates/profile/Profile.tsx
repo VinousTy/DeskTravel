@@ -22,14 +22,14 @@ import useMedia from 'use-media';
 interface INPUTS {
   name: string;
   userName: string;
-  category: number;
+  category: string;
   self_introduction: string;
 }
 
 const Profile: React.FC = () => {
   const [avatarImage, setAvatarImage] = useState<any>(null),
     [image, setImage] = useState<File | null>(null),
-    [userCategory, setUserCategory] = useState<number | undefined>(undefined);
+    [userCategory, setUserCategory] = useState('');
   const dispatch: AppDispatch = useDispatch();
   const profile = useSelector(selectProfile);
   const categories = useSelector(selectCategory);
@@ -37,7 +37,7 @@ const Profile: React.FC = () => {
   const isWide = useMedia({ maxWidth: '768px' });
 
   const categoryOnProfile = categories?.filter((category) => {
-    if (category.id === 0) {
+    if (category.id === '') {
       return;
     } else {
       return category.id === profile.category;
@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
       name: profile.name,
       user_name: profile.user_name,
       self_introduction: profile.self_introduction,
-      category: Number(userCategory),
+      category: userCategory,
       img: image,
     };
     await dispatch(isSignIn());
@@ -204,7 +204,7 @@ const Profile: React.FC = () => {
               },
             })}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setUserCategory(Number(e.target.value))
+              setUserCategory(e.target.value)
             }
           >
             <option value="">カテゴリを選択してください</option>
