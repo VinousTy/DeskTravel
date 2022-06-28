@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface CATEGORY {
-  id: number;
+  id: string;
   name: string;
 }
 
