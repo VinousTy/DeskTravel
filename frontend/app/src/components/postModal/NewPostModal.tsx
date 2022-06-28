@@ -46,6 +46,7 @@ const NewPostModal: React.FC = () => {
 
   const postRegist = async () => {
     await dispatch(createPost({ body: 'create' }));
+    dispatch(isCloseModal());
     await history.push('/post/regist');
   };
 

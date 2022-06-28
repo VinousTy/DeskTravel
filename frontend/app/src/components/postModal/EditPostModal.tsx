@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../app/store';
 import {
   getMyPost,
+  isCloseDeleteModal,
   isCloseEditModal,
+  isCloseModal,
   isOpenDeleteModal,
   selectIsEditOpen,
 } from '../../features/post/postSlice';
@@ -60,7 +62,9 @@ const EditPostModal: React.FC = () => {
     id = id.split('/')[1];
   }
 
+  console.log(isOpen);
   const postDelete = async () => {
+    await dispatch(isCloseModal());
     await dispatch(isOpenDeleteModal());
     await dispatch(isCloseEditModal());
   };
@@ -93,7 +97,11 @@ const EditPostModal: React.FC = () => {
           <br />
           <h3
             className="cursor-pointer hover:text-gray-400  transition-all md:mb-2"
-            onClick={() => history.push(`/post/edit/${id}`)}
+            onClick={() => {
+              dispatch(isCloseModal());
+              dispatch(isCloseEditModal());
+              history.push(`/post/edit/${id}`);
+            }}
           >
             投稿を編集する
           </h3>
