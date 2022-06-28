@@ -5,7 +5,7 @@ import { AppDispatch } from '../../../app/store';
 import { getImage, selectImage } from '../../../features/post/postSlice';
 
 interface POST_ID {
-  postId: number;
+  postId: string;
 }
 const MyPostList: React.FC<POST_ID> = ({ postId }) => {
   const dispatch: AppDispatch = useDispatch();
