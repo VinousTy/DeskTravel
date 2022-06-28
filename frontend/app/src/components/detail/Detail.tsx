@@ -263,7 +263,11 @@ const Detail: React.FC<PROPS_POST_DETAIL> = ({
             >
               {prof[0]?.name}
             </div>
-            <div className={`${!isWide && styles.edit_btn_box}`}>
+            <div
+              className={`${
+                !isWide ? styles.edit_btn_box : 'absolute top-0 right-4'
+              }`}
+            >
               {loginId === userPost && (
                 <span
                   className="cursor-pointer text-lg md:text-3xl"
