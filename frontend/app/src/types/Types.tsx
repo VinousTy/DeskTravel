@@ -1,5 +1,5 @@
 export interface File extends Blob {
-  readonly lastModified: number;
+  readonly lastModified: string;
   readonly name: string;
 }
 
@@ -9,26 +9,26 @@ export interface AUTH_STATE {
   isEmail: boolean;
   isNotEmail: boolean;
   category: {
-    id: number;
+    id: string;
     name: string;
   }[];
   myprofile: {
-    id: number;
+    id: string;
     name: string;
     user_name: string;
     self_introduction: string;
-    category: number;
-    userProfile: number;
+    category: string;
+    userProfile: string;
     created_on: string;
     img: any;
   };
   profiles: {
-    id: number;
+    id: string;
     name: string;
     user_name: string;
     self_introduction: string;
-    category: number;
-    userProfile: number;
+    category: string;
+    userProfile: string;
     created_on: string;
     img: any;
   }[];
@@ -44,7 +44,7 @@ export interface POST_EMAIL {
 }
 
 export interface USER_ID {
-  id: number;
+  id: string;
 }
 
 export interface NEW_PASSWORD {
@@ -53,12 +53,12 @@ export interface NEW_PASSWORD {
 }
 
 export interface PROPS_PROFILE {
-  id: number;
+  id: string;
   name: string;
   user_name: string;
   self_introduction: string;
-  category: number;
-  img: File | null;
+  category: string;
+  img: any;
 }
 
 export interface PROPS_NAME {
@@ -66,7 +66,7 @@ export interface PROPS_NAME {
 }
 
 export interface PROPS_PROFILELIST {
-  id: number;
+  id: string;
   name: string;
   user_name: string;
   self_introduction: string;
@@ -88,76 +88,76 @@ export interface POST_STATE {
   isOther: boolean;
   isLoadingPost: boolean;
   post: {
-    id: number;
+    id: string;
     body: string;
-    userPost: number;
+    userPost: string;
     created_on: string;
-    bookmark: number[];
-    liked: number[];
+    bookmark: string[];
+    liked: string[];
   }[];
   posts: {
-    id: number;
+    id: string;
     body: string;
-    userPost: number;
+    userPost: string;
     created_on: string;
-    bookmark: number[];
-    liked: number[];
+    bookmark: string[];
+    liked: string[];
   }[];
   img: {
-    id: number;
+    id: string;
     img: any;
-    postId: number;
+    postId: string;
   }[];
   monitor: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   computer: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   keyboard: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   mouse: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   speaker: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   table: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   chair: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   other: {
-    id: number;
+    id: string;
     name: string;
-    postId: number;
+    postId: string;
   }[];
   comments: {
-    id: number;
+    id: string;
     body: string;
-    userComment: number;
-    postId: number;
+    userComment: string;
+    postId: string;
   }[];
 }
 
 export interface NEW_POST {
-  id: number;
+  id: string;
   body: string;
 }
 
@@ -166,40 +166,40 @@ export interface POST_BODY {
 }
 
 export interface POST_ID {
-  id: number;
+  id: string;
 }
 
 export interface POST_LIKED {
-  id: number;
+  id: string;
   body: string;
-  current: number[];
-  current_bookmark: number[];
-  new: number;
-  new_bookmark: number;
+  current: string[];
+  current_bookmark: string[];
+  new: string;
+  new_bookmark: string;
 }
 
 export interface POST_BOOKMARK {
-  id: number;
+  id: string;
   body: string;
-  current: number[];
-  current_bookmark: number[];
-  new: number;
-  new_bookmark: number;
+  current: string[];
+  current_bookmark: string[];
+  new: string;
+  new_bookmark: string;
 }
 
 export interface POST_COMMENT {
   body: string;
-  postId: number;
+  postId: string;
 }
 
 export interface POST_IMAGE {
-  img: File | null;
+  img: any;
   postId: any;
 }
 
 export interface UPDATE_IMAGE {
-  id: number;
-  img: File | null;
+  id: string;
+  img: any;
   postId: any;
 }
 
@@ -209,26 +209,26 @@ export interface POST_ITEM {
 }
 
 export interface UPDATE_ITEM {
-  id: number;
+  id: string;
   name: string[];
   postId: any;
 }
 
 export interface PROPS_POST_LIST {
-  postId: number;
-  loginId: number;
-  userPost: number;
+  postId: string;
+  loginId: string;
+  userPost: string;
   body: string;
-  liked: number[];
-  bookmark: number[];
+  liked: string[];
+  bookmark: string[];
 }
 
 export interface PROPS_POST_DETAIL {
-  id: number;
-  postId: number;
-  loginId: number;
-  userPost: number;
+  id: string;
+  postId: string;
+  loginId: string;
+  userPost: string;
   body: string;
-  liked: number[];
-  bookmark: number[];
+  liked: string[];
+  bookmark: string[];
 }
