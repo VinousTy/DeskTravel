@@ -63,6 +63,7 @@ const DeletePostModal: React.FC = () => {
 
   const postDelete = async () => {
     await dispatch(deletePost({ id: id }));
+    dispatch(isCloseDeleteModal());
     history.push('/mypage');
   };
 
