@@ -203,13 +203,13 @@ describe('Detail Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/detail/1' }]}>
           <Detail
-            id={1}
-            postId={1}
+            id={''}
+            postId={''}
             body={'投稿文'}
-            liked={[1]}
-            userPost={1}
-            bookmark={[1]}
-            loginId={1}
+            liked={['']}
+            userPost={''}
+            bookmark={['']}
+            loginId={''}
           />
         </MemoryRouter>
       </Provider>
@@ -235,13 +235,13 @@ describe('Detail Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/detail/1' }]}>
           <Detail
-            id={1}
-            postId={1}
+            id={''}
+            postId={''}
             body={'投稿文'}
-            liked={[1]}
-            userPost={1}
-            bookmark={[1]}
-            loginId={1}
+            liked={['']}
+            userPost={''}
+            bookmark={['']}
+            loginId={''}
           />
         </MemoryRouter>
       </Provider>
@@ -257,13 +257,13 @@ describe('Detail Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/detail/1' }]}>
           <Detail
-            id={1}
-            postId={1}
+            id={''}
+            postId={''}
             body={'投稿文'}
-            liked={[1]}
-            userPost={1}
-            bookmark={[1]}
-            loginId={1}
+            liked={['']}
+            userPost={''}
+            bookmark={['']}
+            loginId={''}
           />
         </MemoryRouter>
       </Provider>
@@ -278,13 +278,13 @@ describe('Detail Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/detail/1' }]}>
           <Detail
-            id={1}
-            postId={1}
+            id={''}
+            postId={''}
             body={'投稿文'}
-            liked={[1]}
-            userPost={1}
-            bookmark={[1]}
-            loginId={1}
+            liked={['']}
+            userPost={''}
+            bookmark={['']}
+            loginId={''}
           />
         </MemoryRouter>
       </Provider>
