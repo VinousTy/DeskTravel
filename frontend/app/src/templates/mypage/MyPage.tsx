@@ -21,12 +21,12 @@ import MyPostList from '../../components/postList/myPostList/MyPostList';
 import NewPostModal from '../../components/postModal/NewPostModal';
 
 interface POST_BOOKMARK {
-  id: number;
+  id: string;
   body: string;
-  userPost: number;
+  userPost: string;
   created_on: string;
-  bookmark: number[];
-  liked: number[];
+  bookmark: string[];
+  liked: string[];
 }
 
 const MyPage: React.FC = () => {

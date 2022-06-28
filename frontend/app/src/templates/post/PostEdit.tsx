@@ -102,14 +102,14 @@ const PostEdit: React.FC = () => {
     [table, setTable] = useState(''),
     [chair, setChair] = useState(''),
     [other, setOther] = useState(''),
-    [monitorId, setMonitorId] = useState(0),
-    [computerId, setComputerId] = useState(0),
-    [keyboardId, setKeyboardId] = useState(0),
-    [mouseId, setMouseId] = useState(0),
-    [speakerId, setSpeakerId] = useState(0),
-    [tableId, setTableId] = useState(0),
-    [chairId, setChairId] = useState(0),
-    [otherId, setOtherId] = useState(0),
+    [monitorId, setMonitorId] = useState(''),
+    [computerId, setComputerId] = useState(''),
+    [keyboardId, setKeyboardId] = useState(''),
+    [mouseId, setMouseId] = useState(''),
+    [speakerId, setSpeakerId] = useState(''),
+    [tableId, setTableId] = useState(''),
+    [chairId, setChairId] = useState(''),
+    [otherId, setOtherId] = useState(''),
     [indexMonitor, setIndexMonitor] = useState(0),
     [indexComputer, setIndexComputer] = useState(0),
     [indexKeyboard, setIndexKeyboard] = useState(0),
@@ -135,16 +135,16 @@ const PostEdit: React.FC = () => {
   }
 
   const postOnId = myPost?.filter((post) => {
-    return post.id === Number(id);
+    return post.id === id;
   });
 
   const postOnImg = postGetImage?.filter((img) => {
-    return img.postId === Number(id);
+    return img.postId === id;
   });
 
   const postOnMonitor = () => {
     const postOnMonitor = selectMonitors.filter((monitor) => {
-      return monitor.postId === Number(id);
+      return monitor.postId === id;
     });
     const monitorArry = postOnMonitor[0]?.name.split(',');
     let monitors: string[] = [];
@@ -159,7 +159,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnComputer = () => {
     const postOnComputer = selectComputers.filter((computer) => {
-      return computer.postId === Number(id);
+      return computer.postId === id;
     });
     const computerArry = postOnComputer[0]?.name.split(',');
     let computers: string[] = [];
@@ -174,7 +174,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnkeyboard = () => {
     const postOnKeyboard = selectKeyboards.filter((keyboard) => {
-      return keyboard.postId === Number(id);
+      return keyboard.postId === id;
     });
     const keyboardArry = postOnKeyboard[0]?.name.split(',');
     let keyboards: string[] = [];
@@ -190,7 +190,7 @@ const PostEdit: React.FC = () => {
 
   const postOnMouse = () => {
     const postOnMouse = selectMouses.filter((mouse) => {
-      return mouse.postId === Number(id);
+      return mouse.postId === id;
     });
     const mouseArry = postOnMouse[0]?.name.split(',');
     let mouses: string[] = [];
@@ -205,7 +205,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnSpeaker = () => {
     const postOnSpeaker = selectSpeakers.filter((speaker) => {
-      return speaker.postId === Number(id);
+      return speaker.postId === id;
     });
     const speakerArry = postOnSpeaker[0]?.name.split(',');
     let speakers: string[] = [];
@@ -220,7 +220,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnTable = () => {
     const postOnTable = selectTables.filter((table) => {
-      return table.postId === Number(id);
+      return table.postId === id;
     });
     const tableArry = postOnTable[0]?.name.split(',');
     let tables: string[] = [];
@@ -235,7 +235,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnChair = () => {
     const postOnChair = selectChairs.filter((chair) => {
-      return chair.postId === Number(id);
+      return chair.postId === id;
     });
     const chairArry = postOnChair[0]?.name.split(',');
     let chairs: string[] = [];
@@ -250,7 +250,7 @@ const PostEdit: React.FC = () => {
   };
   const postOnOther = () => {
     const postOnOther = selectOthers.filter((other) => {
-      return other.postId === Number(id);
+      return other.postId === id;
     });
     const otherArry = postOnOther[0]?.name.split(',');
     let others: string[] = [];
@@ -443,99 +443,99 @@ const PostEdit: React.FC = () => {
   const submitPost = async () => {
     await dispatch(isLoadingPostStart());
     const packet = {
-      id: Number(id),
+      id: id,
       body: body,
     };
     const packetImage = {
       id: postOnImg[0]?.id,
       img: image,
-      postId: Number(id),
+      postId: id,
     };
     const packetMonitor = {
       id: monitorId,
       name: monitors,
-      postId: Number(id),
+      postId: id,
     };
     const packetComputer = {
       id: computerId,
       name: computers,
-      postId: Number(id),
+      postId: id,
     };
     const packetKeyboard = {
       id: keyboardId,
       name: keyboards,
-      postId: Number(id),
+      postId: id,
     };
     const packetMouse = {
       id: mouseId,
       name: mouses,
-      postId: Number(id),
+      postId: id,
     };
     const packetSpeaker = {
       id: speakerId,
       name: speakers,
-      postId: Number(id),
+      postId: id,
     };
     const packetTable = {
       id: tableId,
       name: tables,
-      postId: Number(id),
+      postId: id,
     };
     const packetChair = {
       id: chairId,
       name: chairs,
-      postId: Number(id),
+      postId: id,
     };
     const packetOther = {
       id: otherId,
       name: others,
-      postId: Number(id),
+      postId: id,
     };
     await dispatch(updatePost(packet));
     if (postOnImg[0]?.id) {
       await dispatch(updateImage(packetImage));
     } else {
-      await dispatch(postImage({ img: image, postId: Number(id) }));
+      await dispatch(postImage({ img: image, postId: id }));
     }
     if (monitorId) {
       await dispatch(updateMonitor(packetMonitor));
     } else {
-      await dispatch(postMonitor({ name: monitors, postId: Number(id) }));
+      await dispatch(postMonitor({ name: monitors, postId: id }));
     }
     if (computerId) {
       await dispatch(updateComputer(packetComputer));
     } else {
-      await dispatch(postComputer({ name: computers, postId: Number(id) }));
+      await dispatch(postComputer({ name: computers, postId: id }));
     }
     if (keyboardId) {
       await dispatch(updateKeyboard(packetKeyboard));
     } else {
-      await dispatch(postKeyboard({ name: keyboards, postId: Number(id) }));
+      await dispatch(postKeyboard({ name: keyboards, postId: id }));
     }
     if (mouseId) {
       await dispatch(updateMouse(packetMouse));
     } else {
-      await dispatch(postMouse({ name: mouses, postId: Number(id) }));
+      await dispatch(postMouse({ name: mouses, postId: id }));
     }
     if (speakerId) {
       await dispatch(updateSpeaker(packetSpeaker));
     } else {
-      await dispatch(postSpeaker({ name: speakers, postId: Number(id) }));
+      await dispatch(postSpeaker({ name: speakers, postId: id }));
     }
     if (tableId) {
       await dispatch(updateTable(packetTable));
     } else {
-      await dispatch(postTable({ name: tables, postId: Number(id) }));
+      await dispatch(postTable({ name: tables, postId: id }));
     }
     if (chairId) {
       await dispatch(updateChair(packetChair));
     } else {
-      await dispatch(postChair({ name: chairs, postId: Number(id) }));
+      await dispatch(postChair({ name: chairs, postId: id }));
     }
     if (otherId) {
       await dispatch(updateOther(packetOther));
     } else {
-      await dispatch(postOther({ name: others, postId: Number(id) }));
+      await dispatch(postOther({ name: others, postId: id }));
     }
     await dispatch(isLoadingPostEnd());
     setImage(null);

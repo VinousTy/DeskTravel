@@ -39,39 +39,39 @@ const initialState: POST_STATE = {
   isOther: false,
   post: [
     {
-      id: 0,
+      id: '',
       body: '',
-      userPost: 0,
+      userPost: '',
       created_on: '',
-      bookmark: [0],
-      liked: [0],
+      bookmark: [''],
+      liked: [''],
     },
   ],
   posts: [
     {
-      id: 0,
+      id: '',
       body: '',
-      userPost: 0,
+      userPost: '',
       created_on: '',
-      bookmark: [0],
-      liked: [0],
+      bookmark: [''],
+      liked: [''],
     },
   ],
-  img: [{ id: 0, img: '', postId: 0 }],
-  monitor: [{ id: 0, name: '', postId: 0 }],
-  computer: [{ id: 0, name: '', postId: 0 }],
-  keyboard: [{ id: 0, name: '', postId: 0 }],
-  mouse: [{ id: 0, name: '', postId: 0 }],
-  speaker: [{ id: 0, name: '', postId: 0 }],
-  table: [{ id: 0, name: '', postId: 0 }],
-  chair: [{ id: 0, name: '', postId: 0 }],
-  other: [{ id: 0, name: '', postId: 0 }],
+  img: [{ id: '', img: '', postId: '' }],
+  monitor: [{ id: '', name: '', postId: '' }],
+  computer: [{ id: '', name: '', postId: '' }],
+  keyboard: [{ id: '', name: '', postId: '' }],
+  mouse: [{ id: '', name: '', postId: '' }],
+  speaker: [{ id: '', name: '', postId: '' }],
+  table: [{ id: '', name: '', postId: '' }],
+  chair: [{ id: '', name: '', postId: '' }],
+  other: [{ id: '', name: '', postId: '' }],
   comments: [
     {
-      id: 0,
+      id: '',
       body: '',
-      userComment: 0,
-      postId: 0,
+      userComment: '',
+      postId: '',
     },
   ],
 };
@@ -213,6 +213,7 @@ export const postImage = createAsyncThunk(
           Authorization: `JWT ${localStorage.localJWT}`,
         },
       });
+      console.log(res.data);
       return res.data;
     } else {
       const res = await axios.post(apiUrlPostImage, uploadData, {
@@ -242,6 +243,7 @@ export const updateImage = createAsyncThunk(
           },
         }
       );
+      console.log(res.data);
       return res.data;
     } else {
       const res = await axios.put(

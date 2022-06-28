@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
 from django_mysql.models import ListCharField
+import uuid
 
 
 class UserManager(BaseUserManager):
@@ -25,6 +26,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   email = models.EmailField(max_length=50, unique=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
@@ -40,6 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Category(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=50)
 
   def __str__(self):
@@ -47,6 +50,7 @@ class Category(models.Model):
 
 
 class Profile(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=50)
   userProfile = models.OneToOneField(
       settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userProfile')
@@ -63,6 +67,7 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   body = models.CharField(max_length=255)
   userPost = models.ForeignKey(
       settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userPost')
@@ -78,6 +83,7 @@ class Post(models.Model):
 
 
 class PostImage(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   img = models.ImageField(blank=True, null=True, upload_to='posts')
   postId = models.ForeignKey(
       Post, on_delete=models.CASCADE, related_name='postId')
@@ -87,6 +93,7 @@ class PostImage(models.Model):
 
 
 class Comments(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   body = models.CharField(max_length=100)
   userComment = models.ForeignKey(
       settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userComment')
@@ -97,6 +104,7 @@ class Comments(models.Model):
 
 
 class Monitor(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -105,6 +113,7 @@ class Monitor(models.Model):
 
 
 class Computer(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -113,6 +122,7 @@ class Computer(models.Model):
 
 
 class Keyboard(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -121,6 +131,7 @@ class Keyboard(models.Model):
 
 
 class Mouse(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -129,6 +140,7 @@ class Mouse(models.Model):
 
 
 class Speaker(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -137,6 +149,7 @@ class Speaker(models.Model):
 
 
 class Table(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -145,6 +158,7 @@ class Table(models.Model):
 
 
 class Chair(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 
@@ -153,6 +167,7 @@ class Chair(models.Model):
 
 
 class Other(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, blank=True, null=True)
   postId = models.ForeignKey(Post, on_delete=models.CASCADE)
 

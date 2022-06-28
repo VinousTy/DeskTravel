@@ -33,10 +33,10 @@ const PostDetail: React.FC = () => {
       <EditPostModal />
       <DeletePostModal />
       {posts.map((post) => {
-        if (post.id === Number(id))
+        if (post.id == id)
           return (
             <Detail
-              id={Number(id)}
+              id={id}
               key={post.id}
               postId={post.id}
               body={post.body}
