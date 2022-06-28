@@ -19,7 +19,7 @@ import { getPosts, selectPosts } from '../../../features/post/postSlice';
 import SwiperList from './SwiperList';
 
 interface PROPS_LOGINID {
-  loginId: number;
+  loginId: string;
 }
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectCoverflow]);
 
