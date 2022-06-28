@@ -158,12 +158,12 @@ describe('Swiper Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/home' }]}>
           <SwiperList
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[1]}
-            liked={[1]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -181,12 +181,12 @@ describe('Swiper Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/home' }]}>
           <SwiperList
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[1]}
-            liked={[1]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -201,12 +201,12 @@ describe('Swiper Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/home' }]}>
           <SwiperList
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[1]}
-            liked={[1]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>

@@ -158,12 +158,12 @@ describe('PostCard Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/list' }]}>
           <PostCard
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[0]}
-            liked={[0]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -182,12 +182,12 @@ describe('PostCard Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/list' }]}>
           <PostCard
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[0]}
-            liked={[0]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -202,12 +202,12 @@ describe('PostCard Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/list' }]}>
           <PostCard
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[0]}
-            liked={[0]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -224,12 +224,12 @@ describe('PostCard Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/list' }]}>
           <PostCard
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[1]}
-            liked={[1]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
@@ -244,12 +244,12 @@ describe('PostCard Components Test Cases', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={[{ pathname: '/post/list' }]}>
           <PostCard
-            postId={1}
+            postId={''}
             body={'投稿文'}
-            loginId={1}
-            userPost={1}
-            bookmark={[1]}
-            liked={[1]}
+            loginId={''}
+            userPost={''}
+            bookmark={['']}
+            liked={['']}
           />
         </MemoryRouter>
       </Provider>
